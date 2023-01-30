@@ -8,15 +8,20 @@ import ru.khorunzhii.weatherapp.repositories.SensorsRepository;
 
 @Service
 @Transactional(readOnly = true)
-public class SensorService {
+public class SensorsService {
     private SensorsRepository sensorsRepository;
 
     @Autowired
-    public SensorService(SensorsRepository sensorsRepository) {
+    public SensorsService(SensorsRepository sensorsRepository) {
         this.sensorsRepository = sensorsRepository;
     }
 
     public Sensor findByName(String name) {
         return sensorsRepository.findByName(name);
+    }
+
+    @Transactional
+    public void save(Sensor sensor){
+        sensorsRepository.save(sensor);
     }
 }
